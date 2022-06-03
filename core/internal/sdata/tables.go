@@ -248,6 +248,8 @@ func DiscoverColumns(db *sql.DB, dbtype string, blockList []string) ([]DBColumn,
 			return nil, err
 		}
 
+		c.Name = strings.ReplaceAll(c.Name, "-", "_")
+
 		k := (c.Schema + ":" + c.Table + ":" + c.Name)
 		v, ok := cmap[k]
 		if !ok {
